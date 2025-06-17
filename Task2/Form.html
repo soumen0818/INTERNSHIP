@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+  <form>
+  <fieldset style="border: 2px solid #007bff; padding: 20px; margin: 20px; background-color: #f9f9f9; border-radius: 8px;">
+    <legend style="font-size: 1.5em; color: #007bff; font-weight: bold;">Registration Form</legend>
+
+    <div style="margin-bottom: 15px;">
+      <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold;">Full Name:</label>
+      <input type="text" id="name" name="name" style="width: 98%; padding: 8px; font-size: 1em;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="birthdate" style="display: block; margin-bottom: 5px; font-weight: bold;">Birthdate:</label>
+      <input type="date" id="birthdate" name="birthdate" style="padding: 8px; font-size: 1em;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="country" style="display: block; margin-bottom: 5px; font-weight: bold;">Country:</label>
+      <select id="country" name="country" style="width: 100%; padding: 8px; font-size: 1em;">
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="uk">United Kingdom</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <p style="font-weight: bold; margin-bottom: 5px;">Gender:</p>
+      <label style="margin-right: 15px;"><input type="radio" name="gender" value="male"> Male</label>
+      <label style="margin-right: 15px;"><input type="radio" name="gender" value="female"> Female</label>
+      <label><input type="radio" name="gender" value="other"> Other</label>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <p style="font-weight: bold; margin-bottom: 5px;">Interests:</p>
+      <label style="display: block; margin-bottom: 5px;"><input type="checkbox" name="interests" value="technology"> Technology</label>
+      <label style="display: block; margin-bottom: 5px;"><input type="checkbox" name="interests" value="travel"> Travel</label>
+      <label style="display: block;"><input type="checkbox" name="interests" value="cooking"> Cooking</label>
+    </div>
+
+    <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer;">Submit</button>
+  </fieldset>
+</form>  
+</body>
+</html>
