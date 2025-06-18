@@ -3,48 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a192f;
+        }
+
+        .form-container {
+            background: #112240;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 550px;
+            margin: 1rem;
+            border: 1px solid #233554;
+        }
+
+        h1 {
+            color: #64ffda;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #8892b0;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 1rem;
+            background: #1e2d4d;
+            border: 1px solid #233554;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #ccd6f6;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #64ffda;
+            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: #64ffda;
+            color: #0a192f;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: #4ad8b9;
+            transform: translateY(-2px);
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <form>
-  <fieldset style="border: 2px solid #007bff; padding: 20px; margin: 20px; background-color: #f9f9f9; border-radius: 8px;">
-    <legend style="font-size: 1.5em; color: #007bff; font-weight: bold;">Registration Form</legend>
-
-    <div style="margin-bottom: 15px;">
-      <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold;">Full Name:</label>
-      <input type="text" id="name" name="name" style="width: 98%; padding: 8px; font-size: 1em;">
+    <div class="form-container">
+        <h1>Create Account</h1>
+        <form>
+            <div class="input-group">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="userType">Account Type</label>
+                <select id="userType" name="userType" required>
+                    <option value="">Select account type</option>
+                    <option value="student">Student</option>
+                    <option value="professional">Professional</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+            <button type="submit">Create Account</button>
+        </form>
     </div>
-
-    <div style="margin-bottom: 15px;">
-      <label for="birthdate" style="display: block; margin-bottom: 5px; font-weight: bold;">Birthdate:</label>
-      <input type="date" id="birthdate" name="birthdate" style="padding: 8px; font-size: 1em;">
-    </div>
-
-    <div style="margin-bottom: 15px;">
-      <label for="country" style="display: block; margin-bottom: 5px; font-weight: bold;">Country:</label>
-      <select id="country" name="country" style="width: 100%; padding: 8px; font-size: 1em;">
-        <option value="india">India</option>
-        <option value="usa">USA</option>
-        <option value="uk">United Kingdom</option>
-      </select>
-    </div>
-
-    <div style="margin-bottom: 15px;">
-      <p style="font-weight: bold; margin-bottom: 5px;">Gender:</p>
-      <label style="margin-right: 15px;"><input type="radio" name="gender" value="male"> Male</label>
-      <label style="margin-right: 15px;"><input type="radio" name="gender" value="female"> Female</label>
-      <label><input type="radio" name="gender" value="other"> Other</label>
-    </div>
-
-    <div style="margin-bottom: 20px;">
-      <p style="font-weight: bold; margin-bottom: 5px;">Interests:</p>
-      <label style="display: block; margin-bottom: 5px;"><input type="checkbox" name="interests" value="technology"> Technology</label>
-      <label style="display: block; margin-bottom: 5px;"><input type="checkbox" name="interests" value="travel"> Travel</label>
-      <label style="display: block;"><input type="checkbox" name="interests" value="cooking"> Cooking</label>
-    </div>
-
-    <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer;">Submit</button>
-  </fieldset>
-</form>  
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const userType = document.getElementById('userType');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (validateForm()) {
+            // If validation passes, you can submit the form
+            alert('Registration successful!');
+            form.reset();
+        }
+    });
+
+    function validateForm() {
+        let isValid = true;
+        
+        // Reset any existing error styles
+        removeAllErrors();
+
+        // Validate First Name
+        if (!firstName.value.trim()) {
+            showError(firstName, 'First name is required');
+            isValid = false;
+        } else if (!/^[A-Za-z]{2,}$/.test(firstName.value.trim())) {
+            showError(firstName, 'First name must contain at least 2 letters');
+            isValid = false;
+        }
+
+        // Validate Last Name
+        if (!lastName.value.trim()) {
+            showError(lastName, 'Last name is required');
+            isValid = false;
+        } else if (!/^[A-Za-z]{2,}$/.test(lastName.value.trim())) {
+            showError(lastName, 'Last name must contain at least 2 letters');
+            isValid = false;
+        }
+
+        // Validate Email
+        if (!email.value.trim()) {
+            showError(email, 'Email is required');
+            isValid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+            showError(email, 'Please enter a valid email address');
+            isValid = false;
+        }
+
+        // Validate Password
+        if (!password.value) {
+            showError(password, 'Password is required');
+            isValid = false;
+        } else if (password.value.length < 8) {
+            showError(password, 'Password must be at least 8 characters long');
+            isValid = false;
+        }
+
+        // Validate Confirm Password
+        if (!confirmPassword.value) {
+            showError(confirmPassword, 'Please confirm your password');
+            isValid = false;
+        } else if (password.value !== confirmPassword.value) {
+            showError(confirmPassword, 'Passwords do not match');
+            isValid = false;
+        }
+
+        // Validate User Type
+        if (!userType.value) {
+            showError(userType, 'Please select an account type');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    function showError(input, message) {
+        const formGroup = input.parentElement;
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.style.color = '#ff6b6b';
+        errorDiv.style.fontSize = '0.8rem';
+        errorDiv.style.marginTop = '0.5rem';
+        errorDiv.textContent = message;
+        
+        input.style.borderColor = '#ff6b6b';
+        formGroup.appendChild(errorDiv);
+    }
+
+    function removeAllErrors() {
+        const errorMessages = document.querySelectorAll('.error-message');
+        errorMessages.forEach(error => error.remove());
+        
+        const inputs = form.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.style.borderColor = '#233554';
+        });
+    }
+    
+});
+</script>
 </html>
