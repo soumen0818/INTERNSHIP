@@ -101,7 +101,7 @@
 <body>
     <div class="form-container">
         <h1>Create Account</h1>
-        <form>
+        <form id="registrationForm" action="/register" method="POST">
             <div class="input-group">
                 <div class="form-group">
                     <label for="firstName">First Name</label>
@@ -138,108 +138,32 @@
     </div>
 </body>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    const firstName = document.getElementById('firstName');
-    const lastName = document.getElementById('lastName');
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-    const confirmPassword = document.getElementById('confirmPassword');
-    const userType = document.getElementById('userType');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (validateForm()) {
-            // If validation passes, you can submit the form
-            alert('Registration successful!');
-            form.reset();
-        }
-    });
-
-    function validateForm() {
-        let isValid = true;
-        
-        // Reset any existing error styles
-        removeAllErrors();
-
-        // Validate First Name
-        if (!firstName.value.trim()) {
-            showError(firstName, 'First name is required');
-            isValid = false;
-        } else if (!/^[A-Za-z]{2,}$/.test(firstName.value.trim())) {
-            showError(firstName, 'First name must contain at least 2 letters');
-            isValid = false;
-        }
-
-        // Validate Last Name
-        if (!lastName.value.trim()) {
-            showError(lastName, 'Last name is required');
-            isValid = false;
-        } else if (!/^[A-Za-z]{2,}$/.test(lastName.value.trim())) {
-            showError(lastName, 'Last name must contain at least 2 letters');
-            isValid = false;
-        }
-
-        // Validate Email
-        if (!email.value.trim()) {
-            showError(email, 'Email is required');
-            isValid = false;
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-            showError(email, 'Please enter a valid email address');
-            isValid = false;
-        }
-
-        // Validate Password
-        if (!password.value) {
-            showError(password, 'Password is required');
-            isValid = false;
-        } else if (password.value.length < 8) {
-            showError(password, 'Password must be at least 8 characters long');
-            isValid = false;
-        }
-
-        // Validate Confirm Password
-        if (!confirmPassword.value) {
-            showError(confirmPassword, 'Please confirm your password');
-            isValid = false;
-        } else if (password.value !== confirmPassword.value) {
-            showError(confirmPassword, 'Passwords do not match');
-            isValid = false;
-        }
-
-        // Validate User Type
-        if (!userType.value) {
-            showError(userType, 'Please select an account type');
-            isValid = false;
-        }
-
-        return isValid;
-    }
-
-    function showError(input, message) {
-        const formGroup = input.parentElement;
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.style.color = '#ff6b6b';
-        errorDiv.style.fontSize = '0.8rem';
-        errorDiv.style.marginTop = '0.5rem';
-        errorDiv.textContent = message;
-        
-        input.style.borderColor = '#ff6b6b';
-        formGroup.appendChild(errorDiv);
-    }
-
-    function removeAllErrors() {
-        const errorMessages = document.querySelectorAll('.error-message');
-        errorMessages.forEach(error => error.remove());
-        
-        const inputs = form.querySelectorAll('input, select');
-        inputs.forEach(input => {
-            input.style.borderColor = '#233554';
-        });
-    }
+document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
     
+    try {
+        const formData = new FormData(e.target);
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(formData))
+        });
+
+        const data = await response.json();
+        
+        if (data.status === 'success') {
+            alert('Registration successful!');
+            e.target.reset();
+        } else {
+            const errorMessages = data.errors.map(err => err.msg).join('\n');
+            alert('Registration failed:\n' + errorMessages);
+        }
+    } catch (error) {
+        alert('An error occurred during registration');
+        console.error('Registration error:', error);
+    }
 });
 </script>
 </html>
