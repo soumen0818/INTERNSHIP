@@ -10,6 +10,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) =>{
     res.render("index");
 })
+app.get('/read', (req, res) =>{
+    res.render("read");
+})
 
 
 app.listen(3000);
