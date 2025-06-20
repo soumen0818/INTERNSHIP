@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const userModel = require ('./models/user');
 
 app.use(express.json());
 app.set("view engine", "ejs");
@@ -12,6 +13,16 @@ app.get('/', (req, res) =>{
 })
 app.get('/read', (req, res) =>{
     res.render("read");
+})
+
+app.post('/create', async(res, req) =>{
+    let {name , email, image} = res.body;
+   let CreatedUser = await userModel.create({
+       name,
+       email,
+       image
+    });
+    res.send (CreatedUser);
 })
 
 
