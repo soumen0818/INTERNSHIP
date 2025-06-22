@@ -21,7 +21,7 @@
           <h5 class="bg-zinc-700"><%= user.email %></h5>
           <div class="flex gap-3 mt-4">
             <a class="text-blue-500" href="">Edit User</a>
-            <a class="text-red-500" href="">Delete User</a>
+            <a class="text-red-500" href="/delete/<%= user.id %>">Delete User</a>
           </div>
         </div>
         <% }) %>
